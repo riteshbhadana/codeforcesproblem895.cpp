@@ -281,4 +281,138 @@ int main()
 
 
 +++++++++++++++++++++++++++++++++++++++++++
-    
+
+    #include<bits/stdc++.h>
+
+using namespace std;
+
+const int N = 2e5 + 5;
+typedef long long ll;
+
+
+const ll INF = 1e9;
+
+
+
+int n;
+
+
+ ll a[N];
+
+ll sum [N];
+
+void init()
+
+{
+
+for (int i = 1; i <= n; i++)
+{
+
+}
+}
+void solve()
+
+{
+
+
+
+
+cin >> n;
+
+
+init();
+
+for (int i = 1; i <= n; i++) {
+
+cin >> a[i];
+}
+
+
+
+int l = 1, r = n;
+while (a[l] ==1)
+
+{
+
+l++;
+
+}
+
+while (a[r] == 1)
+{
+
+r--;
+
+}
+
+ll pro = 1;
+
+for (int i = 1; i <= r; i++)
+
+{
+
+pro *= a[i];
+
+if (pro > 2* (r - l + 1))
+
+{// Because this product value may be extremely large, so just multiply
+
+
+cout << l << " " << r << endl;
+
+
+return;
+
+}
+}
+
+vector<ll> num;
+
+ sum[i] =sum[i- 1]+a[i];
+ if (a[i] > 1)
+{
+num.push_back(i);
+}
+}
+ll ma= 0;
+
+ll ansl =1, ansr = 1;
+
+for (int i =0; i < num.size(); i++)
+{
+ll p = 1;
+
+for (int j = i; j < num.size(); j++)
+
+{
+
+p* =a[num[j]]; // Find the product of all numbers in this interval
+
+ll temp= sum[n]- sum[num[j]] + sum[num[i]- 1]+p; //
+
+if (temp> ma) {// Maintain the maximum value
+
+ma=temp;
+
+ansl= num[i], ansr = num[j];
+
+}
+}
+}
+
+cout << ansl <<" " << ansr << endl;
+
+} 
+int main()
+{
+ios::sync_with_stdio(false);
+
+cin.tie(0);
+
+int t; 
+cin>>t;
+while(t--)
+{
+solve();
+}
+}
